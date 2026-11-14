@@ -1,0 +1,9 @@
+# Exemple de configuration pour template-dtnpm-cla
+bind_address = "127.0.0.1:4556"
+max_frame_size = 65535
+connect_timeout = "10s"
+allow_unauthenticated_opt_in = false
+
+[peers."dtn://remote-node/"]
+node_id = "dtn://remote-node/"
+address = "127.0.0.1:4557"
