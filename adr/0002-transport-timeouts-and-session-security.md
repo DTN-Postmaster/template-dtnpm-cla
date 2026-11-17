@@ -1,17 +1,17 @@
-# ADR 0002: Gestion des timeouts et sécurité des sessions de transport
+# ADR 0002: Transport Timeouts and Session Security Management
 
-## Statut
-Accepté
+## Status
+Accepted
 
-## Contexte
-Les liens physiques (notamment en radiofréquence) sont sujets à des coupures brutales, à de la congestion ou à des interférences. Une opération bloquante sur un socket ou un port série peut bloquer l'ensemble du CLA et consommer indûment les ressources système.
+## Context
+Physical links (especially over RF) are prone to abrupt drops, congestion, or interference. A blocking operation on a socket or serial port can stall the entire CLA and unduly consume system resources.
 
-## Décision
-1. Toutes les opérations d'établissement de liaison et d'envoi de trames sont encadrées par un timeout strict (`tokio::time::timeout`).
-2. Les canaux de commandes vers le pilote de transport ont une capacité bornée (backpressure) pour prévenir les dénis de service par épuisement mémoire.
-3. Les sessions inactives sont purgées périodiquement.
-4. L'acceptation de trames non authentifiées requiert un opt-in explicite `--allow-unauthenticated-bps-opt-in` / `DTN_HDY_ALLOW_UNAUTHENTICATED_BPS`.
+## Decision
+1. All link establishment and frame transmission operations are wrapped in a strict timeout (`tokio::time::timeout`).
+2. Command channels to the transport driver have bounded capacity (backpressure) to prevent denial-of-service by memory exhaustion.
+3. Inactive sessions are purged periodically.
+4. Accepting unauthenticated frames requires an explicit opt-in `--allow-unauthenticated-bps-opt-in` / `DTN_HDY_ALLOW_UNAUTHENTICATED_BPS`.
 
-## Conséquences
-- Robustesse face aux blocages matériels et réseau.
-- Respect strict des exigences du Cyber Resilience Act (CRA) pour les logiciels d'infrastructure.
+## Consequences
+- Robustness against hardware and network stalls.
+- Strict compliance with Cyber Resilience Act (CRA) requirements for infrastructure software.

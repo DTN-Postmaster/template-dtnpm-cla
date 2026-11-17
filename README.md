@@ -1,22 +1,22 @@
 # Template Convergence Layer Adapter (`template-dtnpm-cla`)
 
-Modèle de référence pour créer rapidement un nouvel adaptateur de couche de convergence (CLA) pour DTN Postmaster et le BPA Hardy (`hardy_bpa::cla::Cla`).
+Reference template to quickly create a new Convergence Layer Adapter (CLA) for DTN Postmaster and the Hardy BPA (`hardy_bpa::cla::Cla`).
 
-## Fonctionnalités incluses
-- Implémentation complète du trait [`hardy_bpa::cla::Cla`].
-- Pilote asynchrone d'arrière-plan (`Driver`) avec gestion robuste des sessions et des canaux bornés.
-- Enregistrement automatique gRPC / UDS auprès du daemon BPA (`RemoteBpa`).
-- Résolution dynamique de voisins (`peer_resolver`) associant `NodeId` et `ClaAddress`.
-- Sécurité intégrée conforme au **Cyber Resilience Act (CRA)** et aux standards DTN :
-  - Support de `--token-file` / `DTN_HDY_TOKEN_FILE` évitant l'exposition de jetons dans la table des processus.
-  - Option d'exception `--allow-unauthenticated-bps-opt-in` pour le banc de test.
-  - Absence garantie de `unwrap()` et de `panic!` dans le code de production.
-  - Vérifications automatisées d'audit et de conformité (`./scripts/check-security.sh`).
+## Included Features
+- Full implementation of the [`hardy_bpa::cla::Cla`] trait.
+- Background asynchronous driver (`Driver`) with robust session management and bounded channels.
+- Automatic gRPC / UDS registration with the BPA daemon (`RemoteBpa`).
+- Dynamic neighbor resolution (`peer_resolver`) mapping `NodeId` to `ClaAddress`.
+- Built-in security compliant with the **Cyber Resilience Act (CRA)** and DTN standards:
+  - Support for `--token-file` / `DTN_HDY_TOKEN_FILE` avoiding token exposure in the process table.
+  - Exception option `--allow-unauthenticated-bps-opt-in` for testbench use.
+  - Guaranteed absence of `unwrap()` and `panic!` in production code.
+  - Automated audit and compliance checks (`./scripts/check-security.sh`).
 
-## Comment instancier ce template
+## How to Instantiate This Template
 
-1. Cloner ou dupliquer ce dépôt sous le nom de votre adaptateur (ex: `dtnpm-cla-ax25`).
-2. Mettre à jour `name = "dtnpm-cla-ax25"` dans `Cargo.toml`.
-3. Renommer `TemplateCla` dans `src/cla.rs` et adapter la logique de transmission dans `src/driver.rs`.
-4. Ajuster la configuration dans `src/config.rs` et l'exemple dans `examples/`.
-5. Valider avec `./scripts/check-security.sh` et exécuter les tests : `cargo test`.
+1. Clone or duplicate this repository under your adapter's name (e.g., `dtnpm-cla-ax25`).
+2. Update `name = "dtnpm-cla-ax25"` in `Cargo.toml`.
+3. Rename `TemplateCla` in `src/cla.rs` and adapt the transmission logic in `src/driver.rs`.
+4. Adjust the configuration in `src/config.rs` and the example in `examples/`.
+5. Validate with `./scripts/check-security.sh` and run tests: `cargo test`.

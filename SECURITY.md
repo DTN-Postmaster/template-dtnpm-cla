@@ -1,20 +1,20 @@
-# Politique de Sécurité - template-dtnpm-cla
+# Security Policy — `template-dtnpm-cla`
 
-Le projet `template-dtnpm-cla` applique les exigences du **Cyber Resilience Act (CRA)** et les spécifications DTN (RFC 9171, RFC 9172).
+The `template-dtnpm-cla` project enforces **Cyber Resilience Act (CRA)** requirements and DTN specifications (RFC 9171, RFC 9172).
 
-## Versions supportées
+## Supported Versions
 
-| Version | Supportée |
+| Version | Supported |
 | ------- | --------- |
-| 0.1.x   | ✅ Oui    |
+| 0.1.x   | ✅ Yes    |
 
-## Principes de Sécurité
-- **Authentification & BPSec (RFC 9172)** : Mode strict par défaut. Le CLA opère en lien de confiance avec le BPA Hardy.
-- **Gestion des Secrets** : Les jetons Bearer doivent impérativement être passés par fichier via `--token-file` ou `DTN_HDY_TOKEN_FILE` afin d'éviter toute exposition dans la table des processus système (`/proc/<pid>/cmdline`).
-- **Protection Transport & DoS** : Encadrement systématique de toutes les opérations d'entrée/sortie par des délais d'attente (timeouts) et limitation stricte de la taille maximale des trames (`max_frame_size`).
-- **Absence de panique** : Code de production garanti sans `unwrap()` ni `panic!`.
+## Security Principles
+- **Authentication & BPSec (RFC 9172)**: Strict mode by default. The CLA operates in a trusted relationship with the Hardy BPA.
+- **Secret Management**: Bearer tokens must be passed via file using `--token-file` or `DTN_HDY_TOKEN_FILE` to avoid any exposure in the system process table (`/proc/<pid>/cmdline`).
+- **Transport & DoS Protection**: Systematic wrapping of all I/O operations with timeouts and strict enforcement of maximum frame size (`max_frame_size`).
+- **No Panics**: Production code guaranteed free of `unwrap()` and `panic!`.
 
-## Signalement d'une Vulnérabilité
+## Reporting a Vulnerability
 
-Pour signaler une vulnérabilité de sécurité, merci de contacter l'équipe de sécurité à :
-`security@dtn-postmaster.org` ou d'ouvrir un avis de sécurité privé sur GitHub.
+To report a security vulnerability, please contact the security team at:
+`security@dtn-postmaster.org` or open a private Security Advisory on GitHub.

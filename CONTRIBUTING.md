@@ -1,22 +1,22 @@
-# Guide de Contribution - template-dtnpm-cla
+# Contributing Guide — `template-dtnpm-cla`
 
-Merci de contribuer au projet `template-dtnpm-cla`.
+Thank you for contributing to the `template-dtnpm-cla` project.
 
-## Prérequis
-- Rust 1.85 ou supérieur (édition 2024)
+## Prerequisites
+- Rust 1.85 or later (2024 edition)
 - `cargo-audit`, `cargo-deny`, `gitleaks`
 
-## Installation des hooks git
-Activez immédiatement le hook de validation pré-commit :
+## Installing Git Hooks
+Immediately enable the pre-commit validation hook:
 ```bash
 ./scripts/install-hooks.sh
 ```
 
-## Cycle de Développement
-1. Implémentez ou ajustez le pilote de transport.
-2. Lancez les vérifications locales :
+## Development Cycle
+1. Implement or adjust the transport driver.
+2. Run local checks:
    ```bash
    ./scripts/check-security.sh
    cargo test --workspace --all-targets
    ```
-3. Respectez les conventions [Conventional Commits](https://www.conventionalcommits.org/).
+3. Follow [Conventional Commits](https://www.conventionalcommits.org/) conventions.
