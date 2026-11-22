@@ -1,5 +1,2 @@
 [advisories]
-ignore = [
-    # VEX / Not Affected: libsqlite3-sys CVE-2026-119375
-    "RUSTSEC-2026-0459",
-]
+ignore = []

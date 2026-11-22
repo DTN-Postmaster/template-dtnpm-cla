@@ -19,7 +19,7 @@ required-features = ["cli"]
 
 [features]
 default = ["cli"]
-serde = ["dep:serde", "hardy-bpa/serde", "hardy-bpv7/serde", "dep:humantime"]
+serde = ["dep:serde", "hardy-bpa/serde", "hardy-bpv7/serde"]
 cli = ["serde", "dep:clap", "dep:yaml_serde", "dep:toml", "dep:tracing-subscriber", "dep:anyhow", "dtnpm-core/transport-grpc"]
 
 [dependencies]
@@ -32,7 +32,6 @@ tracing = { version = "0.1", default-features = false }
 thiserror = "2"
 bytes = "1"
 serde = { version = "1", features = ["derive"], optional = true }
-humantime = { version = "2", optional = true }
 clap = { version = "4", features = ["derive", "env"], optional = true }
 yaml_serde = { version = "0.10", optional = true }
 toml = { version = "0.8", optional = true }

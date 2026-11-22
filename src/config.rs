@@ -29,7 +29,10 @@ pub struct ClaConfig {
     pub max_frame_size: usize,
 
     /// Connection attempt timeout
-    #[serde(default = "default_connect_timeout", with = "humantime_duration")]
+    #[serde(
+        default = "default_connect_timeout",
+        with = "dtnpm_core::duration::serde_duration"
+    )]
     pub connect_timeout: Duration,
 
     /// Explicit opt-in flag to allow unauthenticated or unsigned traffic
@@ -80,22 +83,5 @@ impl ClaConfig {
             ));
         }
         Ok(())
-    }
-}
-
-mod humantime_duration {
-    use serde::{Deserialize, Deserializer, Serializer};
-    use std::time::Duration;
-
-    pub fn serialize<S: Serializer>(
-        duration: &Duration,
-        s: S,
-    ) -> std::result::Result<S::Ok, S::Error> {
-        s.collect_str(&humantime::format_duration(*duration))
-    }
-
-    pub fn deserialize<'de, D: Deserializer<'de>>(d: D) -> std::result::Result<Duration, D::Error> {
-        let text = String::deserialize(d)?;
-        humantime::parse_duration(&text).map_err(serde::de::Error::custom)
     }
 }
